@@ -23,9 +23,17 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
-# set repo
-echo "deb http://cdn.debian.net/debian wheezy main contrib non-free"> /etc/apt/souces.list 
-echo "deb http://security.debian.org/ wheezy/updates main contrib non-free"> /etc/apt/souces.list 
+# # set repo
+cat > /etc/apt/sources.list <<END2
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+deb http://http.us.debian.org/debian jessie main contrib non-free
+deb http://packages.dotdeb.org jessie all
+deb-src http://packages.dotdeb.org jessie all
+END2
+wget "http://www.dotdeb.org/dotdeb.gpg"
+cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
+"deb http://security.debian.org/ wheezy/updates main contrib non-free"> /etc/apt/souces.list 
 echo "deb http://packages.dotdeb.org wheezy all"> /etc/apt/souces.list
 echo "deb http://mirror.ovh.net/debian/ wheezy main contrib"> /etc/apt/sources.list ;
 echo "deb http://mirror.sg.gs/debian wheezy main contrib non-free"> /etc/apt/sources.list ;
