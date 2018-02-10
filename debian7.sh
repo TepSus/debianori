@@ -41,7 +41,7 @@ apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 
 # update
-apt-get update; apt-get -y upgrade; apt-get dist-upgrade
+apt-get update; apt-get -y upgrade
 
 # install webserver
 apt-get -y install nginx php5-fpm php5-cli
